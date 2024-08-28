@@ -1,0 +1,142 @@
+.main {
+    width: 1440px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+}
+
+
+h1 {
+    font-size: 14px;
+    font-weight: 400;
+    color: #FBFCF8;
+    margin-bottom: 20px;
+    background-color: #0d0d0d;
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 50px;
+}
+
+.mainContent {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mainText {
+    width: 50%;
+    padding: 0 20px;
+}
+
+.mainText h2 {
+    color: #4CAF50;
+    font-size: 58px;
+    line-height: 55px;
+}
+
+h2:nth-of-type(2) {
+    margin-bottom: 2rem;
+}
+
+.mainText p {
+    width: 80%;
+    color: #0d0d0d;
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 20px;
+    padding: 5px 20px;
+    border-left: 2px solid #FF6F61;
+    background-color: #a1b7c21f;
+}
+
+button {
+    background-color: #FF6F61;
+    color: #0d0d0d;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    margin-top: 40px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.bentoGrid {
+    width: 50%;
+    display: flex;
+    gap: 20px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rightDown {
+    display: flex;
+    gap: 20px;
+}
+
+.rightDown2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.amenitiesSection {
+    width: 100%;
+    margin-top: 100px;
+    background-color: #a1b7c21f;
+    padding: 50px 0;
+}
+
+.amenitiesTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.amenitiesTextContainer h3 {
+    color: #FBFCF8;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #0d0d0d;
+    padding: 5px 15px;
+    border-radius: 50px;
+}
+
+.amenitiesTextContainer p{
+    color: #607D8B;
+    font-size: 48px;
+    line-height: 34px;
+    width: 80%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+.amenitiesCardContainer {
+    width: 1240px;
+    margin: auto;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* border: 1px solid #FF6F61; */
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 50px;
+}
