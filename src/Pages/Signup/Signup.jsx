@@ -42,7 +42,7 @@ const Signup = () => {
         </p>
       </div>
       <div className={styles.imageContainer}>
-      <img src={ls} alt="Fitness" className={styles.image} style={{height:"650px",width:"100%",marginTop:"40px",zIndex:"-1"}} />
+      <img src={ls} alt="Fitness" className={styles.image} />
       </div>
     </div>
   );
