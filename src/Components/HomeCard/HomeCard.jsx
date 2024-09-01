@@ -7,9 +7,9 @@ const HomeCard = ({ imgPath, locationName, height, width }) => {
             <div className={styles.imgContainer}>
                 <img src={imgPath} alt={locationName} />
             </div>
-            <div className={styles.textContainer}>
+            {/* <div className={styles.textContainer}>
                 <h3>{locationName}</h3>
-            </div>
+            </div> */}
         </div>
     )
 }
