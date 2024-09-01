@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/Logo.png";
-import { NavLink } from "react-router-dom";
+import { json, NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { useAuth } from "../../Context/AuthContext"; // Use the correct path and hook
 
 const Navbar = () => {
     const { isLoggedIn, logout, admin } = useAuth(); // Access authentication status and logout function
+
+
+    let local = JSON.parse(localStorage.getItem("currloginuser")) || 'Welcome';
+    const name = local[0][1]?.username;
+    console.log(name)
 
     return (
         <header>
@@ -76,6 +81,12 @@ const Navbar = () => {
                             </NavLink>
                         </>
                     )}
+                    <p
+                        to="/"
+                        className={styles.links}
+                    >
+                        {local[0][1]?.username ? local[0][1]?.username : "Guest"}
+                    </p>
                 </div>
             </nav>
         </header>

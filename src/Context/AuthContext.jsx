@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
         setAdmin(false);
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('admin');
+        localStorage.removeItem('currloginuser');
         toast.success("Logged Out Successfully");
     };
 
