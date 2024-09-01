@@ -18,6 +18,8 @@ export const AuthProvider = ({ children }) => {
         return savedAdmin ? JSON.parse(savedAdmin) : false;
     });
 
+    const [rerender, setRerender] = useState(false);
+
     const login = () => {
         setIsLoggedIn(true);
         localStorage.setItem('isLoggedIn', JSON.stringify(true));
@@ -29,6 +31,7 @@ export const AuthProvider = ({ children }) => {
         setAdmin(false);
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('admin');
+        localStorage.removeItem('currloginuser');
         toast.success("Logged Out Successfully");
     };
 
@@ -37,6 +40,8 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('admin', JSON.stringify(true));
         toast.success("Admin Logged In Successfully");
     };
+
+
 
     // Effect hook to update localStorage when `isLoggedIn` or `admin` state changes
     useEffect(() => {
@@ -48,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     }, [admin]);
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout, adminLogin }}>
+        <AuthContext.Provider value={{ isLoggedIn, login, logout, adminLogin, admin, rerender, setRerender }}>
             {children}
         </AuthContext.Provider>
     );

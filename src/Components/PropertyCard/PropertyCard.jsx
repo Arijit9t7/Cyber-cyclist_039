@@ -16,10 +16,10 @@ const PropertyCard = ({ property }) => {
 
     const navigate = useNavigate()
 
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, admin } = useAuth();
 
     const handlePropertyCardDetails = (id) => {
-        if (isLoggedIn) {
+        if (isLoggedIn || admin) {
             toast.success("Redirecting to Property Details")
             navigate(`/propertycard/${id}`)
         }

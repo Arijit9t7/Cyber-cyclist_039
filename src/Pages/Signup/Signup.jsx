@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import styles from './Signup.module.css';
-// import ls from "../assets/ls.jpeg";
+import toast from 'react-hot-toast';
+import { auth, provider } from '../../Context/firebase';
+import { signInWithPopup } from 'firebase/auth';
+
 
 const Register = () => {
-  // State for form fields
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,13 +16,47 @@ const Register = () => {
     password: ''
   });
 
-  // State for handling form submission status
   const [status, setStatus] = useState('');
 
-  // Initialize useNavigate
+
   const navigate = useNavigate();
 
-  // Handle input change
+  const handleClickGoogle = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      let userDetails = {
+        username: data.user.displayName,
+        emailID: data.user.email,
+        cart: [],
+      };
+      axios
+        .get(
+          "https://heavenhome-66467-default-rtdb.asia-southeast1.firebasedatabase.app/users.json"
+        )
+        .then((res) => {
+          let filterdata = Object.entries(res.data).filter(([key, e]) => {
+            return data.user.email == e.emailID;
+          });
+          if (filterdata.length > 0) {
+            toast.success("Login Successful");
+            navigate("/login");
+          } else {
+            axios
+              .post(
+                "https://heavenhome-66467-default-rtdb.asia-southeast1.firebasedatabase.app/users.json",
+                userDetails
+              )
+              .then((res) => {
+                toast.success("Signup Successful");
+                navigate("/login");
+              })
+              .catch((e) => {
+                toast.error("Signup failed");
+              });
+          }
+        });
+    });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -95,7 +132,11 @@ const Register = () => {
           <button type="submit" className={styles.button}>
             Sign up
           </button>
+
         </form>
+        <button onClick={handleClickGoogle}>
+          Sign up with Google
+        </button>
         <p className={styles.status}>{status}</p>
         <p className={styles.loginPrompt}>
           Already have an account? <a href="/login">Log in</a>

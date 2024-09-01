@@ -74,7 +74,7 @@ const HomeListing = () => {
             {
                 propertiesData.map((property, index) => {
                     return (
-                        <div className={styles.HomeListingCard}>
+                        <div className={styles.HomeListingCard} key={index}>
                             <Swiper
                                 // install Swiper modules
                                 modules={[Navigation, Pagination]}

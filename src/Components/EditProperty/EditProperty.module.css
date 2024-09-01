@@ -1,0 +1,53 @@
+.editForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    border: 1px solid #ddd;
+    width: 500px;
+    padding: 20px;
+    position: fixed;
+    top: 5%;
+    left: 64%;
+    background-color: #FBFCF8;
+}
+
+.editForm label {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.editForm input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.editForm textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    resize: none;
+    height: 100px;
+}
+
+.editForm button:nth-of-type(1) {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.editForm button:nth-of-type(2) {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ff000075;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
