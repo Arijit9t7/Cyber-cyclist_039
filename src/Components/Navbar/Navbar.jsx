@@ -2,8 +2,11 @@ import React from "react";
 import logo from "../../assets/Logo.png";
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { useAuth } from "../../Context/AuthContext"; // Use the correct path and hook
 
 const Navbar = () => {
+    const { isLoggedIn, logout } = useAuth(); // Access authentication status and logout function
+
     return (
         <header>
             <nav>
@@ -14,33 +17,54 @@ const Navbar = () => {
                     <NavLink
                         to="/"
                         style={({ isActive }) => ({
-                            color: isActive ? "#4CAF50 " : "black",
-
+                            color: isActive ? "#4CAF50" : "black",
                         })}
                         className={styles.links}
                     >
                         Home
                     </NavLink>
                     <NavLink
-                        to="/login"
+                        to="/properties"
                         style={({ isActive }) => ({
-                            color: isActive ? "#4CAF50 " : "black",
-
+                            color: isActive ? "#4CAF50" : "black",
                         })}
                         className={styles.links}
                     >
-                        Login
+                        Properties
                     </NavLink>
-                    <NavLink
-                        to="/signup"
-                        style={({ isActive }) => ({
-                            color: isActive ? "#4CAF50 " : "black",
-
-                        })}
-                        className={styles.links}
-                    >
-                        Signup
-                    </NavLink>
+                    {isLoggedIn ? (
+                        <NavLink
+                            to="/"
+                            style={({ isActive }) => ({
+                                color: isActive ? "#4CAF50" : "black",
+                            })}
+                            className={styles.links}
+                            onClick={logout} // Log out when clicked
+                        >
+                            Logout
+                        </NavLink>
+                    ) : (
+                        <>
+                            <NavLink
+                                to="/login"
+                                style={({ isActive }) => ({
+                                    color: isActive ? "#4CAF50" : "black",
+                                })}
+                                className={styles.links}
+                            >
+                                Login
+                            </NavLink>
+                            <NavLink
+                                to="/signup"
+                                style={({ isActive }) => ({
+                                    color: isActive ? "#4CAF50" : "black",
+                                })}
+                                className={styles.links}
+                            >
+                                Signup
+                            </NavLink>
+                        </>
+                    )}
                 </div>
             </nav>
         </header>

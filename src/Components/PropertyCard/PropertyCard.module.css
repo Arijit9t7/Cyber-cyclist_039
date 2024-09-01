@@ -1,0 +1,90 @@
+.HomeListingCard {
+    width: 400px;
+    height: 440px;
+    background-color: #a1b7c21f;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.HomeListingCard img {
+    width: 100%;
+    border-radius: 5px;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+
+.detailContainer {
+    padding: 10px;
+}
+
+.detailContainer h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FF6F61;
+    margin: 6px 0px;
+}
+
+.detailContainer p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #0d0d0d;
+
+}
+
+.detailContainer > h5 {
+    font-size: 14px;
+    color: #0d0d0d;
+}
+
+.detailContainer > hr {
+    margin: 10px 0px;
+    opacity: 0.7;
+}
+
+.detailContainer .amenities {
+    display: flex;
+    gap: 10px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+
+.amenity span {
+    background-color: #607d8b9c;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #0d0d0d;
+    font-weight: 500;
+}
+
+.agentContainer {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.agentContainer img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.imageName {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.agentContainer span {
+    font-size: 12px;
+    font-weight: 400;
+    color: #0d0d0d;
+}
+
+.agentContainer div:nth-of-type(2) {
+    display: flex;
+    gap: 15px;
+}

@@ -1,36 +1,18 @@
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import App from "./App.jsx";
-// import "./index.css";
-// import { BrowserRouter } from "react-router-dom";
-// import { AuthProvider } from "./context/AuthContext.jsx";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from "./Context/AuthContext.jsx";
+import toast, { Toaster } from 'react-hot-toast';
 
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <React.StrictMode>
-//     <BrowserRouter>
-//     <AuthProvider>
-//       <App />
-//       </AuthProvider>
-//     </BrowserRouter>
-//   </React.StrictMode>
-// );
-
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext.jsx";
-import { ChakraProvider } from "@chakra-ui/react";
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <ChakraProvider>
-          <App />
-        </ChakraProvider>
-      </AuthProvider>
-    </BrowserRouter>
-  </React.StrictMode>
-);
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <AuthProvider>
+      <BrowserRouter>
+        <Toaster />
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
+  </StrictMode>,
+)

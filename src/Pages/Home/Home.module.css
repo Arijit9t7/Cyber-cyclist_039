@@ -25,6 +25,7 @@ h1 {
     display: flex;
     width: 100%;
     align-items: center;
+    margin-top: 20px;
     justify-content: space-between;
 }
 
@@ -118,7 +119,7 @@ button {
     border-radius: 50px;
 }
 
-.amenitiesTextContainer p{
+.amenitiesTextContainer p {
     color: #607D8B;
     font-size: 48px;
     line-height: 34px;
@@ -139,4 +140,38 @@ button {
     border-radius: 10px;
     padding: 20px;
     margin-top: 50px;
+}
+
+.HomeListingSection {
+    width: 1440px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.HomeListingCardContainer {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.HomeListingTextContainer h3 {
+    font-size: 14px;
+    font-weight: 400;
+    color: #FBFCF8;
+    margin-bottom: 20px;
+    background-color: #0d0d0d;
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 50px;
+}
+
+.HomeListingTextContainer p {
+    color: #0d0d0d;
+    font-size: 48px;
+    line-height: 34px;
+    margin-top: 10px;
 }

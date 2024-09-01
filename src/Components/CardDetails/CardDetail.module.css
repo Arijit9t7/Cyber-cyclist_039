@@ -1,0 +1,151 @@
+.CardDetailSection {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.CardDetailContainer {
+    width: 1200px;
+    height: fit-content;
+}
+
+
+.CardDetailContainer img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.CardDetailContainerDetail {
+    width: 60%;
+}
+
+.CardDetailContainerDetail p {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0d0d0d;
+    margin-top: 15px;
+}
+
+.CardDetailContainerDetail h2 {
+    color: #ea210f;
+    font-size: 2rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.CardDetailContainerDetail img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.CardDetailContainerDetail>span {
+    font-size: 20px;
+    font-weight: 300;
+    color: #0d0d0d;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+
+}
+
+.location span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0d0d0d;
+}
+
+.imageName {
+    display: flex;
+    flex-direction: column;
+}
+
+.imageName b {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0d0d0d;
+    margin-bottom: 5px;
+}
+
+.booking{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    width: 40%;
+}
+
+.checkout {
+    /* border: 1px solid #0d0d0d; */
+    width: 100%;
+    height: fit-content;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+}
+
+.checkout>span:nth-of-type(1) {
+    color: #ea210f;
+    font-size: 22px;
+}
+
+.checkout>span:nth-of-type(2) {
+    color: #0d0d0d;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.checkout>p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #0d0d0daa;
+    margin-top: 10px;
+}
+
+.checkout>button {
+    background-color: #4CAF50;
+    color: #0d0d0d;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    font-size: 16px;
+}
+
+.checkout>button:hover {
+    background-color: #4CAF50aa;
+}
+
+.amenities>div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.amenities>div h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2b2929;
+}
+
+.amenities span {
+    margin-left: 0px;
+}
+
+.CardDetailContainerDetail>hr {
+    margin: 10px 0px;
+}
+
+.checkout p:nth-of-type(2) {
+    color: #0d0d0d;
+}

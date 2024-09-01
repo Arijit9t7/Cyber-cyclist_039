@@ -9,6 +9,7 @@ import img4 from "../../assets/homepage/img4.jpg";
 import img5 from "../../assets/homepage/img5.jpg";
 import img6 from "../../assets/homepage/img6.jpg";
 import AmenityCard from "../../Components/AmenityCard/AmenityCard";
+import HomeListing from "../../Components/HomeListing/HomeListing";
 
 
 const amenitiesData = [
@@ -112,6 +113,16 @@ const Home = () => {
                 </div>
             </main>
 
+            <section className={styles.HomeListingSection}>
+                <div className={styles.HomeListingTextContainer}>
+                    <h3>Featured Listings</h3>
+                    <p> Explore our most <b> <i> popular</i></b> properties</p>
+                </div>
+                <div className={styles.HomeListingCardContainer}>
+                    <HomeListing />
+                </div>
+            </section>
+
             <section className={styles.amenitiesSection}>
                 <div className={styles.amenitiesTextContainer}>
                     <h3>
@@ -130,6 +141,8 @@ const Home = () => {
                 </div>
 
             </section>
+
+
         </>
     );
 };
