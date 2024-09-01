@@ -7,8 +7,10 @@ import Signup from './Pages/Signup/Signup'
 import Footer from './Components/Footer/Footer'
 import PropertyListing from './Pages/Properties/PropertyListing'
 import PropertyCardDetail from './Pages/PropertyCardDetail/PropertyCardDetail'
+import { useAuth } from "./context/AuthContext";
 
 function App() {
+  const { isLoggedIn } = useAuth();
 
 
 
