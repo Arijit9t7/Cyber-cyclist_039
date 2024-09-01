@@ -5,7 +5,7 @@ import styles from "./Navbar.module.css";
 import { useAuth } from "../../Context/AuthContext"; // Use the correct path and hook
 
 const Navbar = () => {
-    const { isLoggedIn, logout } = useAuth(); // Access authentication status and logout function
+    const { isLoggedIn, logout, admin } = useAuth(); // Access authentication status and logout function
 
     return (
         <header>
@@ -32,7 +32,18 @@ const Navbar = () => {
                     >
                         Properties
                     </NavLink>
-                    {isLoggedIn ? (
+                    {admin && (
+                        <NavLink
+                            to="/admin-dashboard/admin"
+                            style={({ isActive }) => ({
+                                color: isActive ? "#4CAF50" : "black",
+                            })}
+                            className={styles.links}
+                        >
+                            Admin Dashboard
+                        </NavLink>
+                    )}
+                    {isLoggedIn || admin ? (
                         <NavLink
                             to="/"
                             style={({ isActive }) => ({
@@ -69,6 +80,7 @@ const Navbar = () => {
             </nav>
         </header>
     );
+
 };
 
 export default Navbar;

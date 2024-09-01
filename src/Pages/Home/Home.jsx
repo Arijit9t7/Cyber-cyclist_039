@@ -10,6 +10,7 @@ import img5 from "../../assets/homepage/img5.jpg";
 import img6 from "../../assets/homepage/img6.jpg";
 import AmenityCard from "../../Components/AmenityCard/AmenityCard";
 import HomeListing from "../../Components/HomeListing/HomeListing";
+import { Link } from "react-router-dom";
 
 
 const amenitiesData = [
@@ -73,9 +74,11 @@ const Home = () => {
                             Discover the perfect place to call home with our comprehensive real
                             estate listings and expert guidance.
                         </p>
-                        <button>
-                            Get Started <IoIosArrowRoundForward style={{ verticalAlign: 'middle', fontSize: '20px', fontWeight: '500' }} />
-                        </button>
+                        <Link to='/properties'>
+                            <button>
+                                Get Started
+                            </button>
+                        </Link>
                     </div>
                     <div className={styles.bentoGrid}>
 

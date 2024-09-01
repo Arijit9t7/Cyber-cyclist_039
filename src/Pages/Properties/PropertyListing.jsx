@@ -5,8 +5,12 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import PropertyCard from '../../Components/PropertyCard/PropertyCard'
 
+import { useAuth } from '../../Context/AuthContext'
+
 const PropertyListing = () => {
     const { category } = useParams();
+
+    const { rerender } = useAuth()
 
     // Initialize states with values from sessionStorage or default values
     const [properties, setProperties] = useState([]);
@@ -22,7 +26,7 @@ const PropertyListing = () => {
                     "https://heavenhome-66467-default-rtdb.asia-southeast1.firebasedatabase.app/properties.json"
                 );
 
-                let filteredProperties = response.data;
+                let filteredProperties = Object.values(response.data);
 
                 // Filter by BHK
                 if (selectedBhk) {
@@ -65,7 +69,7 @@ const PropertyListing = () => {
         };
 
         fetchProperties();
-    }, [category, searchTerm, selectedBhk, selectedLocation, sortOrder]);
+    }, [category, searchTerm, selectedBhk, selectedLocation, sortOrder, rerender]);
 
     // Save states to sessionStorage whenever they change
     useEffect(() => {
@@ -73,8 +77,10 @@ const PropertyListing = () => {
         sessionStorage.setItem('selectedBhk', selectedBhk);
         sessionStorage.setItem('selectedLocation', selectedLocation);
         sessionStorage.setItem('sortOrder', sortOrder);
-    }, [searchTerm, selectedBhk, selectedLocation, sortOrder]);
+    }, [searchTerm, selectedBhk, selectedLocation, sortOrder , rerender]);
 
+    // console.log(properties)
+    
     return (
         <>
 
@@ -108,9 +114,6 @@ const PropertyListing = () => {
 
 
             <div style={{ maxWidth: "1350px", margin: "auto", padding: "20px" }}>
-                {/* <h1 className="text-2xl font-semibold">
-                    Properties for {category.charAt(0).toUpperCase() + category.slice(1)}
-                </h1> */}
                 <div className={styles.PropertyCardContainer}>
                     {properties.map((property) => (
                         <PropertyCard key={property.id} property={property} />

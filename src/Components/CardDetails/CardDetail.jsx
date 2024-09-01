@@ -109,7 +109,7 @@ const CardDetail = ({ property }) => {
                         <span>₹{property.price}</span> <span>+512 taxes</span>
                         <p>Agent Name : {property.agentName}</p>
                         <hr />
-                        <p>Total Price: ₹{property.price + 512}</p>
+                        <p>Total Price: ₹{Number(property.price) + 512}</p>
                         <button onClick={showCheckout} >
                             {show ? "Booked" : "Book Now"}
                         </button>
