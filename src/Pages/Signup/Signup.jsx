@@ -134,7 +134,7 @@ const Register = () => {
           </button>
 
         </form>
-        <button onClick={handleClickGoogle}>
+        <button onClick={handleClickGoogle} className={styles.googlebtn}>
           Sign up with Google
         </button>
         <p className={styles.status}>{status}</p>
