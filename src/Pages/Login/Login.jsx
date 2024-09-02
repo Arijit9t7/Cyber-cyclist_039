@@ -117,12 +117,12 @@ const Login = () => {
                     <button className={`${styles.socialButton} ${styles.google}`} onClick={handleGoogleClick} >
                         Google
                     </button>
-                    <button className={`${styles.socialButton} ${styles.facebook}`}>
+                    {/* <button className={`${styles.socialButton} ${styles.facebook}`}>
                         Facebook
-                    </button>
+                    </button> */}
                 </div>
                 <p className={styles.signupPrompt}>
-                    Don’t have an account? <a href="/register">Sign up</a>
+                    Don’t have an account? <a href="/signup">Sign up</a>
                 </p>
             </div>
             {/* <div className={styles.imageContainer}>
