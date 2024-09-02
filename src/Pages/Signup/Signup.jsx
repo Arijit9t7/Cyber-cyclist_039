@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Signup.module.css';
 import toast from 'react-hot-toast';
 import { auth, provider } from '../../Context/firebase';
@@ -139,7 +139,8 @@ const Register = () => {
         </button>
         <p className={styles.status}>{status}</p>
         <p className={styles.loginPrompt}>
-          Already have an account? <a href="/login">Log in</a>
+          Already have an account?
+          <Link to="/login">Log in</Link>
         </p>
       </div>
       {/* <div className={styles.imageContainer}>
