@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import styles from "./Login.module.css";
 import { auth, provider } from '../../Context/firebase'
@@ -37,6 +37,10 @@ const Login = () => {
                 })
         })
 
+    }
+
+    const handleFOrgotPassword = (e) => {
+        toast.success("This feature is not available right now. Please contact the admin for password reset.")
     }
 
     const handleSubmit = (e) => {
@@ -105,7 +109,7 @@ const Login = () => {
                         required
                         className={styles.input}
                     />
-                    <a href="#" className={styles.forgotPassword}>
+                    <a href="#" className={styles.forgotPassword} onClick={handleFOrgotPassword}>
                         Forgot password?
                     </a>
                     <button type="submit" className={styles.button}>
@@ -115,14 +119,15 @@ const Login = () => {
                 <div className={styles.status}>{status}</div>
                 <div className={styles.socialLogin}>
                     <button className={`${styles.socialButton} ${styles.google}`} onClick={handleGoogleClick} >
-                        Google
+                        Google Login
                     </button>
                     {/* <button className={`${styles.socialButton} ${styles.facebook}`}>
                         Facebook
                     </button> */}
                 </div>
                 <p className={styles.signupPrompt}>
-                    Don’t have an account? <a href="/signup">Sign up</a>
+                    Don’t have an account?
+                    <Link to="/signup">Sign up</Link>
                 </p>
             </div>
             {/* <div className={styles.imageContainer}>
