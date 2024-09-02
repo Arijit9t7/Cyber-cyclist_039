@@ -12,7 +12,6 @@ const PropertyListing = () => {
 
     const { rerender } = useAuth()
 
-    // Initialize states with values from sessionStorage or default values
     const [properties, setProperties] = useState([]);
     const [searchTerm, setSearchTerm] = useState(sessionStorage.getItem('searchTerm') || "");
     const [selectedBhk, setSelectedBhk] = useState(sessionStorage.getItem('selectedBhk') || "");
@@ -28,21 +27,21 @@ const PropertyListing = () => {
 
                 let filteredProperties = Object.values(response.data);
 
-                // Filter by BHK
+
                 if (selectedBhk) {
                     filteredProperties = filteredProperties.filter((property) =>
                         property.description.toLowerCase().includes(selectedBhk)
                     );
                 }
 
-                // Filter by Location
+
                 if (selectedLocation) {
                     filteredProperties = filteredProperties.filter((property) =>
                         property.location.toLowerCase().includes(selectedLocation)
                     );
                 }
 
-                // Search Functionality
+
                 if (searchTerm) {
                     filteredProperties = filteredProperties.filter((property) =>
                         property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -55,7 +54,6 @@ const PropertyListing = () => {
                     );
                 }
 
-                // Sort by Price
                 if (sortOrder === "asc") {
                     filteredProperties.sort((a, b) => a.price - b.price);
                 } else if (sortOrder === "desc") {
@@ -77,10 +75,10 @@ const PropertyListing = () => {
         sessionStorage.setItem('selectedBhk', selectedBhk);
         sessionStorage.setItem('selectedLocation', selectedLocation);
         sessionStorage.setItem('sortOrder', sortOrder);
-    }, [searchTerm, selectedBhk, selectedLocation, sortOrder , rerender]);
+    }, [searchTerm, selectedBhk, selectedLocation, sortOrder, rerender]);
 
     // console.log(properties)
-    
+
     return (
         <>
 
