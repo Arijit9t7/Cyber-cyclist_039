@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import logo from "../../assets/Logo.png";
-import { json, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { useAuth } from "../../Context/AuthContext"; // Use the correct path and hook
+import { useAuth } from "../../Context/AuthContext"; 
 
 const Navbar = () => {
-    const { isLoggedIn, logout, admin } = useAuth(); // Access authentication status and logout function
-
+    const { isLoggedIn, logout, admin } = useAuth();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     let local = JSON.parse(localStorage.getItem("currloginuser")) || 'Welcome';
     const name = local[0][1]?.username;
-    console.log(name)
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
     return (
         <header>
@@ -18,80 +21,89 @@ const Navbar = () => {
                 <div>
                     <img className={styles.logo} src={logo} alt="Havenhomes" />
                 </div>
-                <div className={styles.navlinks}>
-                    <NavLink
-                        to="/"
-                        style={({ isActive }) => ({
-                            color: isActive ? "#4CAF50" : "black",
-                        })}
-                        className={styles.links}
-                    >
-                        Home
-                    </NavLink>
-                    <NavLink
-                        to="/properties"
-                        style={({ isActive }) => ({
-                            color: isActive ? "#4CAF50" : "black",
-                        })}
-                        className={styles.links}
-                    >
-                        Properties
-                    </NavLink>
-                    {admin && (
-                        <NavLink
-                            to="/admin-dashboard/admin"
-                            style={({ isActive }) => ({
-                                color: isActive ? "#4CAF50" : "black",
-                            })}
-                            className={styles.links}
-                        >
-                            Admin Dashboard
-                        </NavLink>
-                    )}
-                    {isLoggedIn || admin ? (
-                        <NavLink
+                <div className={`${styles.navlinksContainer} ${isMenuOpen ? styles.open : ""}`}>
+                    <div id="navlinksofall" className={styles.navlinks}>
+                        <NavLink onClick={()=>setIsMenuOpen(!isMenuOpen)}
                             to="/"
                             style={({ isActive }) => ({
                                 color: isActive ? "#4CAF50" : "black",
                             })}
                             className={styles.links}
-                            onClick={logout} // Log out when clicked
                         >
-                            Logout
+                            Home
                         </NavLink>
-                    ) : (
-                        <>
+                        <NavLink
+                        onClick={()=>setIsMenuOpen(!isMenuOpen)}
+                            to="/properties"
+                            style={({ isActive }) => ({
+                                color: isActive ? "#4CAF50" : "black",
+                            })}
+                            className={styles.links}
+                        >
+                            Properties
+                        </NavLink>
+                        {admin && (
                             <NavLink
-                                to="/login"
+                            onClick={()=>setIsMenuOpen(!isMenuOpen)}
+                                to="/admin-dashboard/admin"
                                 style={({ isActive }) => ({
                                     color: isActive ? "#4CAF50" : "black",
                                 })}
                                 className={styles.links}
                             >
-                                Login
+                                Admin Dashboard
                             </NavLink>
+                        )}
+                        {isLoggedIn || admin ? (
                             <NavLink
-                                to="/signup"
+                                to="/"
                                 style={({ isActive }) => ({
                                     color: isActive ? "#4CAF50" : "black",
                                 })}
                                 className={styles.links}
+                                onClick={logout}
                             >
-                                Signup
+                                Logout
                             </NavLink>
-                        </>
-                    )}
-                    <p
-                        to="/"
-                        className={styles.links}
-                    >
-                        {local[0][1]?.username ? local[0][1]?.username : "Guest"}
+                        ) : (
+                            <>
+                                <NavLink
+                                onClick={()=>setIsMenuOpen(!isMenuOpen)}
+                                    to="/login"
+                                    style={({ isActive }) => ({
+                                        color: isActive ? "#4CAF50" : "black",
+                                    })}
+                                    className={styles.links}
+                                >
+                                    Login
+                                </NavLink>
+                                <NavLink
+                                onClick={()=>setIsMenuOpen(!isMenuOpen)}
+                                    to="/signup"
+                                    style={({ isActive }) => ({
+                                        color: isActive ? "#4CAF50" : "black",
+                                    })}
+                                    className={styles.links}
+                                >
+                                    Signup
+                                </NavLink>
+                            </>
+                            
+                        )}
+                        <p className={styles.links}>
+                        {local[0][1]?.username ? local[0][1]?.username : ""}
                     </p>
+                    </div>
+                    
+                </div>
+                <div className={styles.hamburger} onClick={toggleMenu}>
+                    <div className={styles.bar}></div>
+                    <div className={styles.bar}></div>
+                    <div className={styles.bar}></div>
                 </div>
             </nav>
         </header>
     );
-
 };
 
 export default Navbar;

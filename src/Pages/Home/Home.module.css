@@ -1,14 +1,16 @@
 .main {
-    width: 1440px;
+    width: 100%;
+    max-width: 1440px;
     margin: auto;
     margin-top: 100px;
+    padding: 0 20px;
 }
 
 .heading {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
-
 
 h1 {
     font-size: 14px;
@@ -23,21 +25,23 @@ h1 {
 
 .mainContent {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
     align-items: center;
     margin-top: 20px;
     justify-content: space-between;
 }
 
 .mainText {
-    width: 50%;
+    width: 100%;
+    max-width: 50%;
     padding: 0 20px;
+    margin-bottom: 20px;
 }
 
 .mainText h2 {
     color: #4CAF50;
-    font-size: 58px;
-    line-height: 55px;
+    font-size: 48px;
+    line-height: 50px;
 }
 
 h2:nth-of-type(2) {
@@ -45,7 +49,6 @@ h2:nth-of-type(2) {
 }
 
 .mainText p {
-    width: 80%;
     color: #0d0d0d;
     font-size: 18px;
     line-height: 24px;
@@ -53,6 +56,8 @@ h2:nth-of-type(2) {
     padding: 5px 20px;
     border-left: 2px solid #FF6F61;
     background-color: #a1b7c21f;
+    width: 100%;
+    max-width: 80%;
 }
 
 .mainText a {
@@ -75,11 +80,11 @@ h2:nth-of-type(2) {
 .mainText a:hover {
     background-color: #FF6F61aa;
 }
-
 .bentoGrid {
     width: 50%;
     display: flex;
-    gap: 20px;
+    gap: 25px;
+    justify-content: center;
 }
 
 .left {
@@ -108,8 +113,8 @@ h2:nth-of-type(2) {
 .amenitiesSection {
     width: 100%;
     margin-top: 100px;
-    background-color: #a1b7c21f;
-    padding: 50px 0;
+    /* background-color: #a1b7c21f; */
+    padding: 50px 20px;
 }
 
 .amenitiesTextContainer {
@@ -131,29 +136,30 @@ h2:nth-of-type(2) {
 
 .amenitiesTextContainer p {
     color: #607D8B;
-    font-size: 48px;
+    font-size: 36px;
     line-height: 34px;
-    width: 80%;
+    width: 100%;
+    max-width: 80%;
     text-align: center;
     margin-top: 10px;
 }
 
-
 .amenitiesCardContainer {
-    width: 1240px;
+    width: 100%;
+    max-width: 1240px;
     margin: auto;
     display: flex;
-    gap: 40px;
     flex-wrap: wrap;
+    gap: 20px;
     justify-content: space-between;
-    /* border: 1px solid #FF6F61; */
-    border-radius: 10px;
     padding: 20px;
     margin-top: 50px;
 }
 
+
 .HomeListingSection {
-    width: 1440px;
+    /* width: 100%; */
+    max-width: 1440px;
     margin: auto;
     margin-top: 50px;
     padding: 50px 20px;
@@ -164,6 +170,7 @@ h2:nth-of-type(2) {
 
 .HomeListingCardContainer {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: space-around;
 }
@@ -181,7 +188,93 @@ h2:nth-of-type(2) {
 
 .HomeListingTextContainer p {
     color: #0d0d0d;
-    font-size: 48px;
+    font-size: 36px;
     line-height: 34px;
     margin-top: 10px;
+}
+
+
+@media (max-width: 1024px) {
+    .mainText h2 {
+        font-size: 36px;
+        line-height: 40px;
+    }
+
+    .mainText p, .mainText a {
+        font-size: 16px;
+    }
+
+    .bentoGrid {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainContent {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mainText, .bentoGrid {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .mainText h2 {
+        font-size: 28px;
+        line-height: 32px;
+    }
+
+    .mainText p {
+        font-size: 14px;
+    }
+
+    .HomeListingTextContainer p, .amenitiesTextContainer p {
+        font-size: 28px;
+        line-height: 32px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .bentoGrid>div:nth-of-type(1) {
+        display: none;
+    }
+}
+
+
+
+@media (max-width: 412px) {
+    h1, .mainText h2, .mainText p, .amenitiesTextContainer h3, .amenitiesTextContainer p, .HomeListingTextContainer p {
+        text-align: center;
+    }
+
+    .mainText p{
+        margin-left: 40px;
+    }
+    .mainContent .mainText .getstarted{
+        text-align:center;
+        margin-left: 108px;
+    }
+
+    .mainText h2 {
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    .mainText p {
+        font-size: 12px;
+    }
+
+    .mainText a {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .bentoGrid, .HomeListingCardContainer, .amenitiesCardContainer {
+        flex-direction: column;
+        align-items: center;
+    }
 }

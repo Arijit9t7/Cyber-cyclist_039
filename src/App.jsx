@@ -12,8 +12,7 @@ import PageNotFound from './Pages/Pagenotfound/PageNotFound'
 import AdminDashboard from './Pages/Admin/AdminDashboard/AdminDashboard'
 import EditProperty from './Components/EditProperty/EditProperty'
 import Addproperty from './Components/Addproperty/Addproperty'
-import { useAuth } from "./context/AuthContext";
-
+import { useAuth } from './Context/AuthContext'
 function App() {
   const { isLoggedIn } = useAuth();
 

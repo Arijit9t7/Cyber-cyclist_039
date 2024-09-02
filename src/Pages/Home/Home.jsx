@@ -74,11 +74,14 @@ const Home = () => {
                             Discover the perfect place to call home with our comprehensive real
                             estate listings and expert guidance.
                         </p>
+                        <h5 className={styles.getstarted}>
                         <Link to='/properties'>
                             <button>
                                 Get Started
                             </button>
                         </Link>
+                        </h5>
+                        
                     </div>
                     <div className={styles.bentoGrid}>
 
