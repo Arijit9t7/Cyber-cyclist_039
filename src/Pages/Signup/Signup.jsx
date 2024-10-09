@@ -38,6 +38,8 @@ const Register = () => {
           });
           if (filterdata.length > 0) {
             toast.success("Login Successful");
+            console.log(userDetails);
+            
             navigate("/login");
           } else {
             axios
