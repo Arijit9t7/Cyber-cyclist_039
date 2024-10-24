@@ -8,7 +8,6 @@ import 'swiper/css/scrollbar';
 import { Pagination, Scrollbar, A11y, Navigation } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext.jsx'
-
 import { toast } from 'react-hot-toast';
 
 
@@ -70,7 +69,6 @@ const PropertyCard = ({ property }) => {
                     }
                 </div>
                 {/* <hr /> */}
-
             </div>
         </div>
     )

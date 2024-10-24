@@ -57,8 +57,8 @@ const Login = () => {
                 // Check for admin credentials
                 if (email === "admin@gmail.com" && password === "1212") {
                     setStatus("Admin login successful!");
-                    adminLogin(); // Call the adminLogin function for admin authentication
-                    navigate("/admin-dashboard/admin"); // Replace with your admin dashboard route
+                    adminLogin();
+                    navigate("/admin-dashboard/admin"); 
                     return;
                 }
 
@@ -121,18 +121,12 @@ const Login = () => {
                     <button className={`${styles.socialButton} ${styles.google}`} onClick={handleGoogleClick} >
                         Google Login
                     </button>
-                    {/* <button className={`${styles.socialButton} ${styles.facebook}`}>
-                        Facebook
-                    </button> */}
                 </div>
                 <p className={styles.signupPrompt}>
                     Don’t have an account?
-                    <Link to="/signup">Sign up</Link>
+                    <Link to="/signup"> Sign up</Link>
                 </p>
             </div>
-            {/* <div className={styles.imageContainer}>
-                <img src={ls} alt="Fitness" className={styles.image} />
-            </div> */}
         </div>
     );
 };
