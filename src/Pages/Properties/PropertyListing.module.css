@@ -78,3 +78,28 @@
     margin: 0 15px;
     font-size: 16px;
 }
+.suggestionsContainer {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 400px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.suggestionsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.suggestionItem {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestionItem:hover {
+    background-color: #f0f0f0;
+}
+
