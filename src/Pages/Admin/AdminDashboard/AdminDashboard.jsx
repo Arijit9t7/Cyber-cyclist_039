@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './AdminDashboard.module.css'
-import AdminSidebar from '../../../Components/AdminSidebar/AdminSidebar'
-import Addproperty from '../../../Components/Addproperty/Addproperty'
+
 import EditProperty from '../../../Components/EditProperty/EditProperty'
 import { useAuth } from '../../../Context/AuthContext'
 import axios from 'axios'

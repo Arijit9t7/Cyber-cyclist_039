@@ -42,8 +42,6 @@ export const AuthProvider = ({ children }) => {
   };
 
 
-
-  // Effect hook to update localStorage when `isLoggedIn` or `admin` state changes
   useEffect(() => {
     localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);

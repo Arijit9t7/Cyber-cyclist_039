@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './PropertyCardDetail.module.css'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import PropertyCard from '../../Components/PropertyCard/PropertyCard'
+
 import CardDetail from '../../Components/CardDetails/CardDetail'
 
 

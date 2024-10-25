@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Pagination, Scrollbar, A11y, Navigation } from 'swiper/modules';
+import { Pagination,  Navigation } from 'swiper/modules';
 import styles from './HomeListing.module.css'
 
 const HomeListing = () => {
@@ -80,10 +80,7 @@ const HomeListing = () => {
                                 modules={[Navigation, Pagination]}
                                 spaceBetween={50}
                                 slidesPerView={1}
-                                // navigation
-                                // pagination={{ clickable: true }}
-                                // scrollbar={{ draggable: true }}
-                                // onSwiper={(swiper) => console.log(swiper)}
+                             
                                 onSlideChange={() => console.log('slide change')}
                             >
                                 <SwiperSlide>

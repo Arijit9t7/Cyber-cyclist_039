@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import styles from './PropertyListing.module.css'
-import { Link } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import PropertyCard from '../../Components/PropertyCard/PropertyCard'
-
-import { useAuth } from '../../Context/AuthContext'
+import React, { useState, useEffect } from 'react';
+import styles from './PropertyListing.module.css';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import PropertyCard from '../../Components/PropertyCard/PropertyCard';
+import { useAuth } from '../../Context/AuthContext';
 
 const PropertyListing = () => {
     const { category } = useParams();
-
-    const { rerender } = useAuth()
+    const { rerender } = useAuth();
 
     const [properties, setProperties] = useState([]);
     const [searchTerm, setSearchTerm] = useState(sessionStorage.getItem('searchTerm') || "");
@@ -18,6 +15,9 @@ const PropertyListing = () => {
     const [selectedLocation, setSelectedLocation] = useState(sessionStorage.getItem('selectedLocation') || "");
     const [sortOrder, setSortOrder] = useState(sessionStorage.getItem('sortOrder') || "default");
 
+   
+    const [currentPage, setCurrentPage] = useState(1);
+    const [propertiesPerPage] = useState(9); 
     useEffect(() => {
         const fetchProperties = async () => {
             try {
@@ -27,20 +27,17 @@ const PropertyListing = () => {
 
                 let filteredProperties = Object.values(response.data);
 
-
                 if (selectedBhk) {
                     filteredProperties = filteredProperties.filter((property) =>
                         property.description.toLowerCase().includes(selectedBhk)
                     );
                 }
 
-
                 if (selectedLocation) {
                     filteredProperties = filteredProperties.filter((property) =>
                         property.location.toLowerCase().includes(selectedLocation)
                     );
                 }
-
 
                 if (searchTerm) {
                     filteredProperties = filteredProperties.filter((property) =>
@@ -69,7 +66,6 @@ const PropertyListing = () => {
         fetchProperties();
     }, [category, searchTerm, selectedBhk, selectedLocation, sortOrder, rerender]);
 
-    // Save states to sessionStorage whenever they change
     useEffect(() => {
         sessionStorage.setItem('searchTerm', searchTerm);
         sessionStorage.setItem('selectedBhk', selectedBhk);
@@ -77,11 +73,26 @@ const PropertyListing = () => {
         sessionStorage.setItem('sortOrder', sortOrder);
     }, [searchTerm, selectedBhk, selectedLocation, sortOrder, rerender]);
 
-    // console.log(properties)
+   
+    const indexOfLastProperty = currentPage * propertiesPerPage;
+    const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+    const currentProperties = properties.slice(indexOfFirstProperty, indexOfLastProperty);
+    const totalPages = Math.ceil(properties.length / propertiesPerPage);
+
+    const nextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
 
     return (
         <>
-
             <div className={styles.filters}>
                 <input
                     type="text"
@@ -110,17 +121,24 @@ const PropertyListing = () => {
                 </select>
             </div>
 
-
             <div style={{ maxWidth: "1350px", margin: "auto", padding: "20px" }}>
                 <div className={styles.PropertyCardContainer}>
-                    {properties.map((property) => (
+                    {currentProperties.map((property) => (
                         <PropertyCard key={property.id} property={property} />
                     ))}
                 </div>
+                <div className={styles.pagination}>
+                    <button onClick={prevPage} disabled={currentPage === 1}>
+                        Previous
+                    </button>
+                    <span> Page {currentPage} of {totalPages} </span>
+                    <button onClick={nextPage} disabled={currentPage === totalPages}>
+                        Next
+                    </button>
+                </div>
             </div>
-
         </>
-    )
-}
+    );
+};
 
-export default PropertyListing
+export default PropertyListing;

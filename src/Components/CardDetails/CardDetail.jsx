@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Pagination, Scrollbar, A11y, Navigation } from 'swiper/modules';
+import { Pagination,  Navigation } from 'swiper/modules';
 import amenityImage from '../../assets/appliance.png'
 import Checkout from '../Checkout/Checkout';
 import toast from 'react-hot-toast';
@@ -15,7 +15,6 @@ const CardDetail = ({ property }) => {
 
     const { Uu_id } = property;
 
-    // Initialize `show` state with the value from `localStorage` for the specific property id
     const [show, setShow] = useState(() => {
         const savedShow = localStorage.getItem(`show_${Uu_id}`);
         return savedShow ? JSON.parse(savedShow) : false;
@@ -35,7 +34,7 @@ const CardDetail = ({ property }) => {
     };
 
     useEffect(() => {
-        // Save `show` state to localStorage whenever it changes, specific to this property id
+     
         localStorage.setItem(`show_${Uu_id}`, JSON.stringify(show));
     }, [show, Uu_id]);
 
@@ -43,14 +42,12 @@ const CardDetail = ({ property }) => {
     return (
         <div className={classes.CardDetailContainer}>
             <Swiper
-                // install Swiper modules
+          
                 modules={[Navigation, Pagination]}
                 spaceBetween={50}
                 slidesPerView={2}
                 navigation
-                // pagination={{ clickable: true }}
-                // scrollbar={{ draggable: true }}
-                // onSwiper={(swiper) => console.log(swiper)}
+            
                 onSlideChange={() => console.log('slide change')}
             >
                 <SwiperSlide>

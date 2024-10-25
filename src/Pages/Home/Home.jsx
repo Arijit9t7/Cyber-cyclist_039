@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Home.module.css";
-import { IoIosArrowRoundForward } from "react-icons/io";
+;
 import HomeCard from "../../Components/HomeCard/HomeCard";
 import img1 from "../../assets/homepage/img1.jpg";
 import img2 from "../../assets/homepage/img2.jpg";

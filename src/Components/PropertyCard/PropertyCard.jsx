@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Pagination, Scrollbar, A11y, Navigation } from 'swiper/modules';
+import { Pagination,  Navigation } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext.jsx'
 
@@ -33,14 +33,11 @@ const PropertyCard = ({ property }) => {
     return (
         <div className={styles.HomeListingCard} onClick={() => handlePropertyCardDetails(property.Uu_id)}>
             <Swiper
-                // install Swiper modules
+               
                 modules={[Navigation, Pagination]}
                 spaceBetween={50}
                 slidesPerView={1}
-                // navigation
-                // pagination={{ clickable: true }}
-                // scrollbar={{ draggable: true }}
-                // onSwiper={(swiper) => console.log(swiper)}
+              
                 onSlideChange={() => console.log('slide change')}
             >
                 <SwiperSlide>

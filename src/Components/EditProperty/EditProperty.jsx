@@ -16,7 +16,7 @@ const EditProperty = ({ property, propertyKey, onClose , fetchProperties }) => {
                 title,
                 description,
                 price,
-                // Update other fields here
+              
             });
             toast.success('Property updated successfully!');
             fetchProperties();
@@ -41,7 +41,7 @@ const EditProperty = ({ property, propertyKey, onClose , fetchProperties }) => {
                 Price:
             </label>
             <input value={price} onChange={(e) => setPrice(e.target.value)} />
-            {/* Add other form fields for editing other property details */}
+          
             <button onClick={handleSave}>Save</button>
             <button onClick={onClose}>Cancel</button>
         </div>
