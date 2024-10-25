@@ -1,15 +1,49 @@
 .PropertyCardContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0 10px;
     gap: 20px;
     margin-top: 10px;
 }
 
+/* Laptop - 3 cards per row */
+@media screen and (min-width: 1024px) {
+    .PropertyCardContainer {
+        justify-content: space-between;
+    }
+
+    .PropertyCardContainer > * {
+        flex: 1 1 calc(33.333% - 20px);
+    }
+}
+
+/* Tablet - 2 cards per row */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .PropertyCardContainer {
+        justify-content: center;
+    }
+
+    .PropertyCardContainer > * {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+/* Mobile - 1 card centered */
+@media screen and (max-width: 767px) {
+    .PropertyCardContainer {
+        justify-content: center;
+    }
+
+    .PropertyCardContainer > * {
+        flex: 1 1 100%;
+        max-width: 90%; /* To make the card centered with slight padding */
+        height: 100%;
+    }
+}
+
 .filters {
-    width: fit-content;
-    margin: auto;
+    width: 100%;
     display: flex;
     gap: 20px;
     justify-content: center;
@@ -20,30 +54,18 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-.filters select {
+.filters select,
+.filters input {
+    width: 100%;
+    max-width: 150px;
     padding: 10px;
     border-radius: 5px;
     border: none;
     outline: none;
 }
 
-.filters input {
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    border: 1px solid transparent;
-}
-
 .filters input:focus {
     border: 1px solid #0d0d0d;
-}
-
-@media screen and (max-width: 768px) {
-    .PropertyCardContainer {
-        margin-top: 100px;
-    }
-    
 }
 
 .pagination {
@@ -54,7 +76,7 @@
 }
 
 .pagination button {
-    background-color: black; /* Bootstrap blue or any color of your choice */
+    background-color: black;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -66,7 +88,7 @@
 }
 
 .pagination button:hover {
-    background-color: #0056b3; /* Darker shade for hover effect */
+    background-color: #0056b3;
 }
 
 .pagination button:disabled {
@@ -78,6 +100,7 @@
     margin: 0 15px;
     font-size: 16px;
 }
+
 .suggestionsContainer {
     position: absolute;
     background-color: white;
@@ -102,4 +125,3 @@
 .suggestionItem:hover {
     background-color: #f0f0f0;
 }
-

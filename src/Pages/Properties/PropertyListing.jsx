@@ -105,7 +105,7 @@ const PropertyListing = () => {
         }
     };
 
-    // Debounced version of the fetchSuggestions function
+    
     const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), []);
 
     const handleSearchChange = (e) => {
