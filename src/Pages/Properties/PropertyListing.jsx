@@ -10,6 +10,7 @@ const PropertyListing = () => {
     const { rerender } = useAuth();
 
     const [properties, setProperties] = useState([]);
+    const [filteredProperties, setFilteredProperties] = useState([]);
     const [searchTerm, setSearchTerm] = useState(sessionStorage.getItem('searchTerm') || "");
     const [selectedBhk, setSelectedBhk] = useState(sessionStorage.getItem('selectedBhk') || "");
     const [selectedLocation, setSelectedLocation] = useState(sessionStorage.getItem('selectedLocation') || "");
@@ -19,7 +20,6 @@ const PropertyListing = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [propertiesPerPage] = useState(9);
 
-    // Debounce function to delay the search execution
     const debounce = (func, delay) => {
         let timeoutId;
         return (...args) => {
@@ -30,83 +30,79 @@ const PropertyListing = () => {
         };
     };
 
-    // Fetch properties when the component mounts or filters change
     useEffect(() => {
         const fetchProperties = async () => {
             try {
                 const response = await axios.get(
                     "https://heavenhome-66467-default-rtdb.asia-southeast1.firebasedatabase.app/properties.json"
                 );
-                let filteredProperties = Object.values(response.data);
-
-                if (selectedBhk) {
-                    filteredProperties = filteredProperties.filter((property) =>
-                        property.description.toLowerCase().includes(selectedBhk)
-                    );
-                }
-
-                if (selectedLocation) {
-                    filteredProperties = filteredProperties.filter((property) =>
-                        property.location.toLowerCase().includes(selectedLocation)
-                    );
-                }
-
-                if (searchTerm) {
-                    filteredProperties = filteredProperties.filter((property) =>
-                        property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        property.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        property.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        property.amenities.some((amenity) =>
-                            amenity.toLowerCase().includes(searchTerm.toLowerCase())
-                        ) ||
-                        property.agentName.toLowerCase().includes(searchTerm.toLowerCase())
-                    );
-                }
-
-                if (sortOrder === "asc") {
-                    filteredProperties.sort((a, b) => a.price - b.price);
-                } else if (sortOrder === "desc") {
-                    filteredProperties.sort((a, b) => b.price - a.price);
-                }
-
-                setProperties(filteredProperties);
+                const fetchedProperties = Object.values(response.data);
+                setProperties(fetchedProperties);
+                setFilteredProperties(fetchedProperties);
             } catch (error) {
                 console.error("Error fetching properties:", error);
             }
         };
 
         fetchProperties();
-    }, [category, searchTerm, selectedBhk, selectedLocation, sortOrder, rerender]);
+    }, []);
+
+    useEffect(() => {
+        let newFilteredProperties = [...properties];
+
+        if (selectedBhk) {
+            newFilteredProperties = newFilteredProperties.filter((property) =>
+                property.description.toLowerCase().includes(selectedBhk)
+            );
+        }
+
+        if (selectedLocation) {
+            newFilteredProperties = newFilteredProperties.filter((property) =>
+                property.location.toLowerCase().includes(selectedLocation)
+            );
+        }
+
+        if (searchTerm) {
+            newFilteredProperties = newFilteredProperties.filter((property) =>
+                property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                property.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                property.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                property.amenities.some((amenity) =>
+                    amenity.toLowerCase().includes(searchTerm.toLowerCase())
+                ) ||
+                property.agentName.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        if (sortOrder === "asc") {
+            newFilteredProperties.sort((a, b) => a.price - b.price);
+        } else if (sortOrder === "desc") {
+            newFilteredProperties.sort((a, b) => b.price - a.price);
+        }
+
+        setFilteredProperties(newFilteredProperties);
+    }, [properties, searchTerm, selectedBhk, selectedLocation, sortOrder]);
 
     useEffect(() => {
         sessionStorage.setItem('searchTerm', searchTerm);
         sessionStorage.setItem('selectedBhk', selectedBhk);
         sessionStorage.setItem('selectedLocation', selectedLocation);
         sessionStorage.setItem('sortOrder', sortOrder);
-    }, [searchTerm, selectedBhk, selectedLocation, sortOrder, rerender]);
+    }, [searchTerm, selectedBhk, selectedLocation, sortOrder]);
 
-    // Fetch suggestions as the user types
     const fetchSuggestions = async (query) => {
         if (query.length === 0) {
             setSuggestions([]);
             return;
         }
-        try {
-            const response = await axios.get(
-                "https://heavenhome-66467-default-rtdb.asia-southeast1.firebasedatabase.app/properties.json"
-            );
-            let filteredSuggestions = Object.values(response.data).filter(property =>
-                property.title.toLowerCase().includes(query.toLowerCase()) ||
-                property.location.toLowerCase().includes(query.toLowerCase())
-            );
-            setSuggestions(filteredSuggestions.slice(0, 5)); // limit suggestions to 5
-        } catch (error) {
-            console.error("Error fetching suggestions:", error);
-        }
+        const filteredSuggestions = filteredProperties.filter(property =>
+            property.title.toLowerCase().includes(query.toLowerCase()) ||
+            property.location.toLowerCase().includes(query.toLowerCase())
+        );
+        setSuggestions(filteredSuggestions.slice(0, 5));
     };
 
-    
-    const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), []);
+    const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), [filteredProperties]);
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
@@ -115,8 +111,8 @@ const PropertyListing = () => {
 
     const indexOfLastProperty = currentPage * propertiesPerPage;
     const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
-    const currentProperties = properties.slice(indexOfFirstProperty, indexOfLastProperty);
-    const totalPages = Math.ceil(properties.length / propertiesPerPage);
+    const currentProperties = filteredProperties.slice(indexOfFirstProperty, indexOfLastProperty);
+    const totalPages = Math.ceil(filteredProperties.length / propertiesPerPage);
 
     const nextPage = () => {
         if (currentPage < totalPages) {
@@ -142,21 +138,21 @@ const PropertyListing = () => {
                     onChange={handleSearchChange}
                 />
                {suggestions.length > 0 && (
-    <ul className={styles.suggestionsContainer}>
-        {suggestions.map((suggestion, index) => (
-            <li
-                key={index}
-                className={styles.suggestionItem}
-                onClick={() => {
-                    setSearchTerm(suggestion.title); // set the search term
-                    setSuggestions([]); // clear suggestions to hide the dropdown
-                }}
-            >
-                {suggestion.title} - {suggestion.location}
-            </li>
-        ))}
-    </ul>
-)}
+                   <ul className={styles.suggestionsContainer}>
+                       {suggestions.map((suggestion, index) => (
+                           <li
+                               key={index}
+                               className={styles.suggestionItem}
+                               onClick={() => {
+                                   setSearchTerm(suggestion.title);
+                                   setSuggestions([]);
+                               }}
+                           >
+                               {suggestion.title} - {suggestion.location}
+                           </li>
+                       ))}
+                   </ul>
+               )}
                  <select value={selectedBhk} onChange={(e) => setSelectedBhk(e.target.value)}>
                     <option value="">All BHK Types</option>
                     <option value="1bhk">1BHK</option>
