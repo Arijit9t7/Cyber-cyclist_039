@@ -67,20 +67,18 @@ const Register = () => {
     }));
   };
 
-  // Handle form submission
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Firebase API endpoint
     const apiUrl = 'https://heavenhome-66467-default-rtdb.asia-southeast1.firebasedatabase.app/users.json';
 
-    // Make a POST request to save the data
+
     axios.post(apiUrl, formData)
       .then((response) => {
         setStatus('User registered successfully!');
         console.log('Response:', response.data);
 
-        // Redirect to login page
         navigate('/login');
       })
       .catch((error) => {
@@ -145,9 +143,7 @@ const Register = () => {
           <Link to="/login">Log in</Link>
         </p>
       </div>
-      {/* <div className={styles.imageContainer}>
-        <img src={ls} alt="Fitness" className={styles.image} style={{height:"650px", width:"100%", marginTop:"40px", zIndex:"-1"}} />
-      </div> */}
+   
     </div>
   );
 };

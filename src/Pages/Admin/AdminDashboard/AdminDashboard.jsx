@@ -13,7 +13,7 @@ const AdminDashboard = () => {
 
     const [properties, setProperties] = useState({});
     const [editingProperty, setEditingProperty] = useState(null);
-    const [editingKey, setEditingKey] = useState(null); // Store the key for the property being edited
+    const [editingKey, setEditingKey] = useState(null); 
     const fetchProperties = async () => {
         try {
             const response = await axios.get(
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
         }
     }
     const handleEdit = (key) => {
-        setEditingProperty(properties[key]); // Set the property to be edited
+        setEditingProperty(properties[key]); 
         setEditingKey(key); // Store the key of the property being edited
     };
 

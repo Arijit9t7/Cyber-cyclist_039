@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styles from './PropertyListing.module.css';
-import { useParams } from 'react-router-dom';
+
 import axios from 'axios';
 import PropertyCard from '../../Components/PropertyCard/PropertyCard';
-import { useAuth } from '../../Context/AuthContext';
+
 
 const PropertyListing = () => {
-    const { category } = useParams();
-    const { rerender } = useAuth();
+ 
 
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
